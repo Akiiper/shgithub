@@ -1,89 +1,14 @@
-﻿# IPProxyPool
-IPProxyPool代理池项目，提供代理ip。支持py2和py3两个版本。
+﻿# IpProxyFree
+IPProxyFree代理池项目，提供代理ip。py3版本。
 <br/>
-详细使用方式，请看我的博客:
+源项目名为 IPProxyPool，修改了少许代码，作为 python3 版本。
+源项目博客地址：
 http://www.cnblogs.com/qiyeboy/p/5693128.html
 <br/>
-最近正在为IPProxyPool添加二级代理，方便调度。大家可以关注我的公众号，更新我会及时通知。
-<br/>
 
-#### 我的微信公众号:
+#### 主要修改点
 
-![](qiye2.jpg)
-<br/>
-希望大家提供更多的代理网站，现在爬取的好用的代理ip还是太少。
-<br/>
-同时感谢[super1-chen](https://github.com/super1-chen),[fancoo](https://github.com/fancoo),[Leibnizhu](https://github.com/Leibnizhu)对项目的贡献。
-<br/>
-
-## 项目依赖
-
-#### Ubuntu,debian
-
-1.安装sqlite数据库(一般系统内置):
-apt-get install sqlite3
-<br/>
-2.安装requests,chardet,web.py,gevent psutil:
-pip install requests chardet web.py sqlalchemy gevent psutil
-<br/>
-3.安装lxml:
-apt-get install python-lxml
-<br/>
-注意：
-
-* python3下的是pip3
-* 有时候使用的gevent版本过低会出现自动退出情况，请使用pip install gevent --upgrade更新)
-* 在python3中安装web.py，不能使用pip，直接下载py3版本的[源码](https://codeload.github.com/webpy/webpy/zip/py3)进行安装
-
-#### Windows
-
-1.下载[sqlite](http://www.sqlite.org/download.html),路径添加到环境变量
-<br/>
-2.安装requests,chardet,web.py,gevent:
-pip install requests chardet web.py sqlalchemy gevent
-<br/>
-3.安装lxml:
-pip install lxml或者下载[lxml windows版](https://pypi.python.org/pypi/lxml/)
-<br/>
-注意：
-
-* python3下的是pip3
-* 有时候使用的gevent版本过低会出现自动退出情况，请使用pip install gevent --upgrade更新)
-* 在python3中安装web.py，不能使用pip，直接下载py3版本的[源码](https://codeload.github.com/webpy/webpy/zip/py3)进行安装
-
-#### 扩展说明
-
-本项目默认数据库是sqlite，但是采用sqlalchemy的ORM模型，通过预留接口可以拓展使用MySQL，MongoDB等数据库。
-配置方法：
-<br/>
-1.MySQL配置
-```
-第一步：首先安装MySQL数据库并启动
-第二步：安装MySQLdb或者pymysql(推荐)
-第三步：在config.py文件中配置DB_CONFIG。如果安装的是MySQLdb模块，配置如下：
-        DB_CONFIG={
-            'DB_CONNECT_TYPE':'sqlalchemy',
-            'DB_CONNECT_STRING':'mysql+mysqldb://root:root@localhost/proxy?charset=utf8'
-        }
-        如果安装的是pymysql模块，配置如下：
-         DB_CONFIG={
-            'DB_CONNECT_TYPE':'sqlalchemy',
-            'DB_CONNECT_STRING':'mysql+pymysql://root:root@localhost/proxy?charset=utf8'
-        }
-```
-sqlalchemy下的DB_CONNECT_STRING参考[支持数据库](http://docs.sqlalchemy.org/en/latest/core/engines.html#supported-databases)，理论上使用这种配置方式不只是适配MySQL，sqlalchemy支持的数据库都可以，但是仅仅测试过MySQL。
-<br/>
-2.MongoDB配置
-```
-第一步：首先安装MongoDB数据库并启动
-第二步：安装pymongo模块
-第三步：在config.py文件中配置DB_CONFIG。配置类似如下：
-        DB_CONFIG={
-            'DB_CONNECT_TYPE':'pymongo',
-            'DB_CONNECT_STRING':'mongodb://localhost:27017/'
-        }
-```
-由于sqlalchemy并不支持MongoDB,因此额外添加了pymongo模式，DB_CONNECT_STRING参考pymongo的连接字符串。
+将 ip 保存在 redis 库中，用于 python3 版本。
 
 ##### 注意
 
